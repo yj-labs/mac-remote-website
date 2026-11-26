@@ -18,13 +18,13 @@ python3 -m http.server 8877 --directory website
 
 ## 下载链接
 
-两个「下载 Mac 端」按钮默认直接指向当前 DMG 附件，点击即交给 GitHub 下载，不先跳转 Release 列表：
+两个「下载 Mac 端」按钮从同目录 `latest-release.json` 读取最新安装包地址，点击直接下载，不经过 Release 列表。HTML 和 JavaScript 不写死版本号、构建号或附件文件名。
 
-https://github.com/yj-labs/mac_remote/releases/download/mac-v1.0.0/MacRemote-macOS-1.0.0-20261126055017-universal.dmg
+该 JSON **由 App 发布流程自动生成**：正式发布成功后，App 仓库的 `scripts/sync-website-release.sh` 使用授权 API 读取所有 Releases，过滤草稿、预发布和 iOS 版本，选择最高正式 Mac 版本，优先 DMG，其次 ZIP；将只含版本、文件名和下载 URL 的元数据更新到本公开仓库，并触发 Pages 部署。草稿不会更新官网。
 
-页面同时尝试读取 Releases API，筛选 `mac-vx.y.z` 的正式版本，优先选择 Universal DMG，其次 ZIP。API 超时、限流或因仓库私有而不可用时，保留上述直链。当前私有仓库不能被匿名读取，发布新安装包后需要同步更新 `website/index.html` 中两个 `data-download` 链接；若后续改用公开安装包仓库，再同步更改 `site.js` 的 API 地址。
+若需修复同步，直接在 App 仓库运行 `./scripts/sync-website-release.sh`，不必重新打包。CI 使用官网仓库 Contents: write 权限的 `WEBSITE_SYNC_TOKEN` Secret；网页从不包含该令牌。网络或 JSON 出错时，按钮回退到 Release 页面，不猜测附件地址。
 
-GitHub 对附件的访问仍遵循源仓库权限。公开官网不会绕过私有仓库权限；需要匿名下载时，应另行配置公开安装包来源，不要将访问令牌放入网页。
+私有仓库附件仍受 GitHub 登录与权限限制。同步 URL 不会把安装包变成公开文件；要支持匿名下载，需要另行提供公开安装包来源。
 
 iPhone 端当前没有公开安装入口，因此页面介绍源码安装方式。以后上架或提供 TestFlight 后，需更新第二步安装说明及下载区说明。
 

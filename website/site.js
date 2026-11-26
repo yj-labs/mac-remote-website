@@ -32,25 +32,24 @@
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 6500);
-  // 按平台筛选，避免未来 iOS 发布被误认为最新 Mac 安装包。
-  fetch('https://api.github.com/repos/yj-labs/mac_remote/releases?per_page=30', {
-    headers: { Accept: 'application/vnd.github+json' }, signal: controller.signal,
+  // 由 App 正式发布流程自动生成的公开元数据，不在前端保存私有仓库令牌。
+  fetch(new URL('latest-release.json', document.baseURI), {
+    cache: 'no-store', signal: controller.signal,
   }).then((response) => {
     if (!response.ok) throw new Error('无法读取发布信息');
     return response.json();
-  }).then((releases) => {
-    if (!Array.isArray(releases)) return;
-    const release = releases.find((item) => !item.draft && !item.prerelease && /^mac-v\d+\.\d+\.\d+$/.test(item.tag_name));
-    if (!release) return;
-    const assets = Array.isArray(release.assets) ? release.assets : [];
-    const asset = assets.find((item) => /^MacRemote-macOS-.*-universal\.dmg$/.test(item.name)) || assets.find((item) => /^MacRemote-macOS-.*-universal\.zip$/.test(item.name));
-    const isRepositoryURL = (url) => typeof url === 'string' && url.startsWith('https://github.com/yj-labs/mac_remote/releases/');
-    if (asset && isRepositoryURL(asset.browser_download_url)) {
-      document.querySelectorAll('[data-download]').forEach((link) => { link.href = asset.browser_download_url; });
+  }).then((release) => {
+    if (!release || !/^mac-v\d+\.\d+\.\d+$/.test(release.tag)) return;
+    const prefix = 'https://github.com/yj-labs/mac_remote/releases/';
+    const download = typeof release.download_url === 'string' ? release.download_url : '';
+    const filename = download.split('/').pop();
+    if (!download.startsWith(prefix + 'download/' + release.tag + '/') || !/^MacRemote-macOS-.*-universal\.(dmg|zip)$/.test(filename)) return;
+    document.querySelectorAll('[data-download]').forEach((link) => { link.href = download; });
+    if (typeof release.release_url === 'string' && release.release_url.startsWith(prefix + 'tag/')) {
+      document.getElementById('release-link').href = release.release_url;
     }
-    if (isRepositoryURL(release.html_url)) document.getElementById('release-link').href = release.html_url;
-    document.getElementById('release-meta').textContent = `${release.tag_name.slice(5)} · macOS 13+ · Apple Silicon 与 Intel`;
+    document.getElementById('release-meta').textContent = `${release.tag.slice(5)} · macOS 13+ · Apple Silicon 与 Intel`;
   }).catch(() => {
-    // 网络、私有仓库或 API 限流时，保留页面内已配置的 DMG 直链。
+    // 元数据不可用时保持 Release 页回退，不猜测文件名或版本号。
   }).finally(() => clearTimeout(timeout));
 })();
