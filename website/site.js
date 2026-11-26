@@ -51,6 +51,6 @@
     if (isRepositoryURL(release.html_url)) document.getElementById('release-link').href = release.html_url;
     document.getElementById('release-meta').textContent = `${release.tag_name.slice(5)} · macOS 13+ · Apple Silicon 与 Intel`;
   }).catch(() => {
-    // 网络、跨域或 API 限流时，下载按钮继续指向 Release 列表。
+    // 网络、私有仓库或 API 限流时，保留页面内已配置的 DMG 直链。
   }).finally(() => clearTimeout(timeout));
 })();

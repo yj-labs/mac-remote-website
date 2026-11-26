@@ -18,7 +18,13 @@ python3 -m http.server 8877 --directory website
 
 ## 下载链接
 
-页面请求公开 GitHub Releases API，筛选 `mac-vx.y.z` 的正式版本，优先选择 Universal DMG，其次 ZIP。下载地址取自实际附件，可适应含版本和构建号的文件名。API 超时、限流或不可用时，按钮仍可进入 Release 列表，不显示虚构的版本号。
+两个「下载 Mac 端」按钮默认直接指向当前 DMG 附件，点击即交给 GitHub 下载，不先跳转 Release 列表：
+
+https://github.com/yj-labs/mac_remote/releases/download/mac-v1.0.0/MacRemote-macOS-1.0.0-20261126055017-universal.dmg
+
+页面同时尝试读取 Releases API，筛选 `mac-vx.y.z` 的正式版本，优先选择 Universal DMG，其次 ZIP。API 超时、限流或因仓库私有而不可用时，保留上述直链。当前私有仓库不能被匿名读取，发布新安装包后需要同步更新 `website/index.html` 中两个 `data-download` 链接；若后续改用公开安装包仓库，再同步更改 `site.js` 的 API 地址。
+
+GitHub 对附件的访问仍遵循源仓库权限。公开官网不会绕过私有仓库权限；需要匿名下载时，应另行配置公开安装包来源，不要将访问令牌放入网页。
 
 iPhone 端当前没有公开安装入口，因此页面介绍源码安装方式。以后上架或提供 TestFlight 后，需更新第二步安装说明及下载区说明。
 
