@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#090a0c">
+  <meta name="description" content="Mac Remote，让 iPhone 成为 Mac 的随身遥控器。触控、文字输入、媒体控制，在同一个局域网轻松连接。">
+  <title>Mac Remote — 把 Mac，交给手边的 iPhone。</title>
+  <link rel="icon" href="assets/app-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="header wrap">
+    <a class="brand" href="#" aria-label="Mac Remote 首页"><img src="assets/app-icon.png" alt="" width="36" height="36"><span>Mac Remote</span></a>
+    <nav aria-label="主导航"><a href="#features">功能</a><a href="#setup">开始使用</a><a href="https://github.com/yj-labs/mac_remote" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></nav>
+    <a class="nav-download" href="#download">下载<span aria-hidden="true"> ↓</span></a>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <p class="eyebrow"><span class="status-dot"></span> 为 iPhone 与 Mac 而作</p>
+      <h1 id="hero-title">把 Mac，交给<br><span>手边的 iPhone。</span></h1>
+      <p class="hero-description">坐得舒服一点。移动光标、输入文字、切换音乐，<br class="desktop-break">不用再起身找键盘。</p>
+      <div class="hero-actions"><a class="button primary mac-download" href="https://github.com/yj-labs/mac_remote/releases" data-download>下载 Mac 端 <span aria-hidden="true">↓</span></a><a class="text-link" href="#setup">看看如何连接 <span aria-hidden="true">↗</span></a></div>
+      <p class="system-note">macOS 13+ <span>·</span> Apple Silicon 与 Intel <span>·</span> iPhone 需 iOS 17+</p>
+      <div class="device-composition" aria-label="Mac 与 iPhone">
+        <figure class="mac-product">
+          <div class="monitor-frame"><div class="monitor-screen"><img src="assets/mac-controls.webp" alt="Mac Remote 服务端的控制权限设置，键盘、鼠标、应用、媒体和电源控制均已开启" width="1140" height="930" fetchpriority="high"></div></div>
+          <div class="monitor-foot" aria-hidden="true"></div>
+          <figcaption>Mac 端 · 控制权限，由你决定</figcaption>
+        </figure>
+        <figure class="phone-product">
+          <div class="screenshot-shell"><img src="assets/ios-remote.webp" alt="已连接 Mac 的 iPhone 遥控主页面，包含触控板、鼠标左右键、媒体键和音量控制" width="804" height="1748" fetchpriority="high"><div class="gesture-demo" id="gesture-demo" role="tabpanel" aria-labelledby="gesture-move" data-mode="move"><div class="gesture-scene" aria-hidden="true"><svg class="gesture-cursor" viewBox="0 0 32 40"><path d="M3 3v29l8-8 6 13 6-3-6-12h11Z"/></svg><div class="gesture-finger finger-one"></div><div class="gesture-finger finger-two"></div><div class="tap-ring"></div></div></div></div>
+          <figcaption>iPhone 端 · 触控板与媒体遥控</figcaption>
+        </figure>
+      </div>
+      <div class="gesture-controls">
+        <div class="gesture-tabs" role="tablist" aria-label="触控板手势">
+          <button type="button" id="gesture-move" role="tab" aria-selected="true" aria-controls="gesture-demo" tabindex="0" data-gesture="move">单指移动</button>
+          <button type="button" id="gesture-tap" role="tab" aria-selected="false" aria-controls="gesture-demo" tabindex="-1" data-gesture="tap">轻点点击</button>
+          <button type="button" id="gesture-scroll" role="tab" aria-selected="false" aria-controls="gesture-demo" tabindex="-1" data-gesture="scroll">双指滚动</button>
+        </div>
+        <p class="gesture-description">单指轻移，光标随之移动。</p>
+        <button class="motion-toggle" type="button" aria-pressed="false">暂停演示</button>
+      </div>
+    </section>
+    <section class="keyboard-showcase wrap section" aria-labelledby="keyboard-title">
+      <figure class="keyboard-product"><img src="assets/ios-keyboard.webp" alt="已连接 Mac 的 iPhone 键盘页面，显示 Mac 功能键与常用快捷键" width="804" height="1748" loading="lazy"></figure>
+      <div><p class="eyebrow">不用找键盘</p><h2 id="keyboard-title">想说的话，<br>在手机上打就好。</h2><p>熟悉的输入法、系统听写，还有 Mac 常用功能键。<br class="desktop-break">选好文字再发送，或者切换到实时输入。</p></div>
+    </section>
+    <section class="features wrap section" id="features" aria-labelledby="features-title">
+      <div class="section-heading"><p class="eyebrow">少一点来回，多一点自在</p><h2 id="features-title">需要的操作，<br>都在手边。</h2><p>Mac 接上电视，iPhone 就是遥控器。<br>从选一部电影，到回一段文字，自然接着做。</p></div>
+      <div class="feature-list">
+        <article><span class="feature-number">01 / 触控</span><h3>像触控板一样顺手。</h3><p>单指移动与轻点、双指滚动、长按拖拽。熟悉的手势，换个舒服的位置继续用。</p></article>
+        <article><span class="feature-number">02 / 输入</span><h3>用顺手的输入法。</h3><p>在 iPhone 上打字或听写，再发送到 Mac。支持编辑后发送，也支持实时输入。</p></article>
+        <article><span class="feature-number">03 / 媒体</span><h3>音乐和音量，随手调。</h3><p>暂停、继续、切换曲目、调节音量。精彩的时候，不必离开沙发。</p></article>
+        <article><span class="feature-number">04 / 应用</span><h3>常用的，一点就开。</h3><p>浏览 Mac 应用，收藏常用应用和网站。让下一次打开更直接。</p></article>
+      </div>
+    </section>
+    <section class="connection wrap section" aria-labelledby="connection-title"><div class="connection-graphic" aria-hidden="true"><span class="connection-device">⌘</span><span class="connection-path"><i></i><i></i><i></i></span><img src="assets/app-icon.png" width="68" height="68" alt=""></div><div><p class="eyebrow">在你的局域网里</p><h2 id="connection-title">连接简单，<br>授权由你。</h2><p>iPhone 和 Mac 接入同一个网络，扫码或输入配对码，<br class="desktop-break">在 Mac 确认后连接。通信使用 TLS 加密，<br class="desktop-break">也能随时撤销某台设备的授权。</p></div></section>
+    <section class="setup wrap section" id="setup" aria-labelledby="setup-title"><p class="eyebrow">从这里开始</p><h2 id="setup-title">准备好，坐回去。</h2><div class="steps"><article><span>01</span><h3>安装 Mac 端</h3><p>下载并打开 DMG，将 App 拖入 Applications。启动后，按提示开启辅助功能权限。</p></article><article><span>02</span><h3>准备 iPhone 端</h3><p>目前提供源码安装方式。使用 Xcode 将 iOS 客户端安装到自己的 iPhone，并允许访问局域网。</p><a class="inline-link" href="https://github.com/yj-labs/mac_remote#连接">查看项目说明 ↗</a></article><article><span>03</span><h3>配对，开始遥控</h3><p>两端连接同一局域网。在 Mac 菜单栏选择「配对新设备」，用 iPhone 扫码，最后在 Mac 确认。</p></article></div></section>
+    <section class="download wrap section" id="download" aria-labelledby="download-title"><img src="assets/app-icon.png" width="68" height="68" alt="Mac Remote 图标"><p class="eyebrow">Mac Remote</p><h2 id="download-title">让 Mac，离你近一点。</h2><p>从一个下载，开始舒服一点的遥控体验。</p><a class="button primary mac-download" href="https://github.com/yj-labs/mac_remote/releases" data-download>下载 Mac 端 <span aria-hidden="true">↓</span></a><p class="system-note" id="release-meta" aria-live="polite">macOS 13+ · Apple Silicon 与 Intel</p><a class="inline-link" href="https://github.com/yj-labs/mac_remote/releases" id="release-link">更新日志与其他下载 ↗</a><div class="install-note"><strong>安装前了解一下</strong><p>当前 Mac 安装包使用开发证书签名，尚未经过 Apple 公证。iPhone 端暂未提供 App Store 或 TestFlight 下载；目前需使用 Xcode 从源码安装。</p></div></section>
+    <section class="faq wrap section" aria-label="常见问题"><h2>还有几个小问题。</h2><details><summary>可以通过互联网远程连接吗？<span aria-hidden="true">＋</span></summary><p>当前版本用于同一局域网内遥控 Mac。请让 iPhone 与 Mac 接入同一个网络。</p></details><details><summary>Mac 为什么需要辅助功能权限？<span aria-hidden="true">＋</span></summary><p>鼠标与键盘控制需要 macOS 的辅助功能授权。安装后从固定的 Applications 副本启动，按应用提示前往系统设置授权。</p></details><details><summary>支持哪些设备？<span aria-hidden="true">＋</span></summary><p>Mac 端支持 macOS 13 及以上，安装包兼容 Apple Silicon 与 Intel；iPhone 端要求 iOS 17 及以上。</p></details></section>
+  </main>
+  <footer class="footer wrap"><a class="brand" href="#"><img src="assets/app-icon.png" alt="" width="28" height="28"><span>Mac Remote</span></a><span>用 iPhone，轻松遥控 Mac。</span><a href="https://github.com/yj-labs/mac_remote" target="_blank" rel="noopener">在 GitHub 上探索 ↗</a></footer>
+</body>
+</html>
