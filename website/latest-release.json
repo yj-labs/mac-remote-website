@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "tag": "mac-v1.0.0",
-  "download_url": "https://github.com/yj-labs/mac-remote-website/releases/download/untagged-bff79edcd3bff746b6c3/MacRemote-macOS-1.0.0-20261126091418-universal.dmg",
+  "download_url": "https://github.com/yj-labs/mac-remote-website/releases/download/mac-v1.0.0/MacRemote-macOS-1.0.0-20261126091418-universal.dmg",
   "asset_name": "MacRemote-macOS-1.0.0-20261126091418-universal.dmg",
   "release_url": "https://github.com/yj-labs/mac-remote-website/releases/tag/mac-v1.0.0",
   "published_at": "2026-11-26T09:18:39Z"
