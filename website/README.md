@@ -20,11 +20,11 @@ python3 -m http.server 8877 --directory website
 
 两个「下载 Mac 端」按钮从同目录 `latest-release.json` 读取最新安装包地址，点击直接下载，不经过 Release 列表。HTML 和 JavaScript 不写死版本号、构建号或附件文件名。
 
-该 JSON **由 App 发布流程自动生成**：正式发布成功后，App 仓库的 `scripts/sync-website-release.sh` 使用授权 API 读取所有 Releases，过滤草稿、预发布和 iOS 版本，选择最高正式 Mac 版本，优先 DMG，其次 ZIP；将只含版本、文件名和下载 URL 的元数据更新到本公开仓库，并触发 Pages 部署。草稿不会更新官网。
+该 JSON **由 App 发布流程自动生成**：正式发布成功后，App 仓库的 `scripts/sync-website-release.sh` 使用授权 API 读取所有 Releases，过滤草稿、预发布和 iOS 版本，选择最高正式 Mac 版本，优先 DMG，其次 ZIP；将 ZIP、DMG 和校验文件镜像到本公开仓库同名 Release，校验后发布，再将版本、文件名和公开下载 URL 更新到本仓库，并触发 Pages 部署。草稿不会更新官网。
 
 若需修复同步，直接在 App 仓库运行 `./scripts/sync-website-release.sh`，不必重新打包。CI 使用官网仓库 Contents: write 权限的 `WEBSITE_SYNC_TOKEN` Secret；网页从不包含该令牌。网络或 JSON 出错时，按钮回退到 Release 页面，不猜测附件地址。
 
-私有仓库附件仍受 GitHub 登录与权限限制。同步 URL 不会把安装包变成公开文件；要支持匿名下载，需要另行提供公开安装包来源。
+下载地址校验与 HTML 备用链接统一使用本公开仓库的 Releases；镜像安装包支持匿名下载，网页不接受私有源码仓库的附件地址。
 
 iPhone 端当前没有公开安装入口，因此页面介绍源码安装方式。以后上架或提供 TestFlight 后，需更新第二步安装说明及下载区说明。
 
@@ -36,7 +36,7 @@ iPhone 端当前没有公开安装入口，因此页面介绍源码安装方式�
 
 官网在公开仓库 `yj-labs/mac-remote-website` 独立维护。App 源码仓库 `yj-labs/mac_remote` 保持私有，未将其 Git 历史或源码复制到本仓库。迁出官网的原因是组织当前套餐不支持私有仓库的 GitHub Pages。
 
-私有 App 仓库的 Releases API 与附件下载需要相应权限；官网公开不会使安装包自动公开。若需普通访客下载安装包，需另外配置公开的安装包发布位置，不能在前端放访问令牌。
+私有 App 仓库的 Releases API 与附件下载需要相应权限；发布脚本通过授权 API 将安装包镜像到本公开仓库，普通访客下载公开副本，前端不保存访问令牌。
 
 ### 首次部署
 

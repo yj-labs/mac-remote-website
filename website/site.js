@@ -40,7 +40,7 @@
     return response.json();
   }).then((release) => {
     if (!release || !/^mac-v\d+\.\d+\.\d+$/.test(release.tag)) return;
-    const prefix = 'https://github.com/yj-labs/mac_remote/releases/';
+    const prefix = 'https://github.com/yj-labs/mac-remote-website/releases/';
     const download = typeof release.download_url === 'string' ? release.download_url : '';
     const filename = download.split('/').pop();
     if (!download.startsWith(prefix + 'download/' + release.tag + '/') || !/^MacRemote-macOS-.*-universal\.(dmg|zip)$/.test(filename)) return;
